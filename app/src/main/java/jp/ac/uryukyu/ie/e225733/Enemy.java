@@ -27,9 +27,11 @@ public class Enemy {
         dead = false;
         System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
     }
-    /*
+    /**
      * nameのゲッターとセッター
+     * @return str型のnameを返す
      */
+
     public String getName(){
         return this.name;
     }
@@ -37,8 +39,9 @@ public class Enemy {
         this.name = name;
     }
 
-    /*
+    /**
      * hitpointのゲッターとセッター
+     * @return int型のhitpointを返す
      */
     public int getHitpoint(){
         return this.hitPoint;
@@ -47,8 +50,9 @@ public class Enemy {
         this.hitPoint = hitPoint;
     }
 
-    /*
+    /**
      * attckのゲッターとセッター
+     * @return int型のattackを返す
      */
     public int getAttack(){
         return this.attack;
@@ -57,8 +61,9 @@ public class Enemy {
         this.attack = attack;
     }
 
-    /*
+    /**
      * deadのゲッターとセッター
+     * @return boolean型のdeadを返す
      */
     public boolean getDead(){
         return this.dead;
