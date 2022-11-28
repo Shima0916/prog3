@@ -8,13 +8,7 @@ package jp.ac.uryukyu.ie.e225733;
  *  boolean dead; //敵の生死状態。true=死亡。
  * Created by tnal on 2016/11/13.
  */
-public class Hero {
-    private String name;
-    private int hitPoint;
-    private int attack;
-    private boolean dead;
-
-
+public class Hero extends LivingThing{
     /**
      * コンストラクタ。名前、最大HP、攻撃力を指定する。
      * @param name ヒーロー名
@@ -22,75 +16,73 @@ public class Hero {
      * @param attack ヒーローの攻撃力
      */
     public Hero (String name, int maximumHP, int attack) {
-        this.name = name;
-        hitPoint = maximumHP;
-        this.attack = attack;
-        dead = false;
-        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
+        super(name, maximumHP, attack);
     }
-
-   /**
-     * nameのゲッターとセッター
+    
+    /**
+     * nameのゲッター
      * @return str型のnameを返す
      */
-
     public String getName(){
         return this.name;
     }
-    public void setName(){
-        this.name = name;
-    }
-
     /**
-     * hitpointのゲッターとセッター
-     * @return int型のhitpointを返す
-     */
-    public int getHitpoint(){
-        return this.hitPoint;
-    }
-    public void setHitpoint(){
-        this.hitPoint = hitPoint;
-    }
-
-    /**
-     * attckのゲッターとセッター
+     * attckのゲッター
      * @return int型のattackを返す
      */
     public int getAttack(){
         return this.attack;
     }
-    public void setAttck(){
-        this.attack = attack;
-    }
-
     /**
-     * deadのゲッターとセッター
+     * hitpointのゲッター
+     * @return int型のhitPointを返す
+     */
+    public int getHitpoint(){
+        return this.hitPoint;
+    }
+    /**
+     * deadのゲッター
      * @return boolean型のdeadを返す
      */
     public boolean getDead(){
         return this.dead;
     }
+    
+
+    
+    /**
+     * attackのセッター
+     */
+    public void setAttck(){
+        this.attack = attack;
+    }
+    /**
+     * nameのセッター
+     */
+    public void setName(){
+        this.name = name;
+    }
+    /**
+     * hitpointのセッター
+     */
+    public void setHitpoint(){
+        this.hitPoint = hitPoint;
+    }
+    /**
+     * deadのセッター
+     */
     public void setDead(){
         this.dead = dead;
     }
+    
 
-
-    /**
-     * Enemyへ攻撃するメソッド。
-     * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
-     * @param e 攻撃対象
-     */
-    public void attack(Enemy e){
-        int damage = (int)(Math.random() * attack);
-        System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", name, e.getName(), damage);
-        e.wounded(damage);
-    }
 
     /**
      * 自身へ攻撃されたときのダメージ処理をするメソッド。
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
      */
+    @Override
     public void wounded(int damage){
         hitPoint -= damage;
         if( hitPoint < 0 ) {
